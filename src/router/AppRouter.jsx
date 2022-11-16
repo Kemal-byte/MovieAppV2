@@ -8,10 +8,6 @@ import MovieDetail from "../pages/MovieDetail";
 import PrivateRouter from "./PrivateRouter";
 
 const AppRouter = () => {
-  const LoginRouter = () => {
-    const { userIn } = useContext(AuthContextPro);
-    return !userIn && <Outlet />;
-  };
   return (
     <BrowserRouter>
       <Routes>

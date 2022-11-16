@@ -42,6 +42,10 @@ const theme = createTheme();
 export default function Register() {
   const [registerEmail, setRegisterEmail] = React.useState();
   const [registerPassword, setRegisterPassword] = React.useState();
+  const [userInfo, setUserInfo] = React.useState({
+    firstName: "",
+    lastName: "",
+  });
   const [user, setUser] = React.useState();
 
   const navigate = useNavigate();
@@ -60,6 +64,8 @@ export default function Register() {
         registerPassword
       );
       console.log(user);
+      console.log(userInfo);
+      localStorage.setItem("user", JSON.stringify(userInfo));
     } catch (error) {
       console.log(error.message);
     }
@@ -69,6 +75,15 @@ export default function Register() {
     event.preventDefault();
     register();
     navigate("/");
+  };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUserInfo((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
   return (
@@ -104,7 +119,9 @@ export default function Register() {
                   fullWidth
                   id="firstName"
                   label="First Name"
+                  value={userInfo.firstName}
                   autoFocus
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -114,7 +131,9 @@ export default function Register() {
                   id="lastName"
                   label="Last Name"
                   name="lastName"
+                  value={userInfo.lastName}
                   autoComplete="family-name"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
