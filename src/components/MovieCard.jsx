@@ -5,13 +5,36 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import makeStyles from "@mui/styles";
+
+const useStyles = makeStyles(() => ({
+  parent: {
+    "&hover": {
+      "& $info": {
+        display: "block",
+      },
+    },
+  },
+  info: {
+    display: "none",
+  },
+}));
 
 const MovieCard = ({ movies }) => {
+  const classes = useStyles();
   return (
     <>
       {movies.map((item, index) => {
         return (
-          <Card sx={{ maxWidth: 345 }} key={index}>
+          <Card
+            key={index}
+            sx={{
+              maxWidth: 345,
+              "&:hover": {
+                cursor: "pointer",
+              },
+            }}
+          >
             <CardMedia
               component="img"
               height="400"
@@ -24,6 +47,7 @@ const MovieCard = ({ movies }) => {
                 align="center"
                 variant="p"
                 component="div"
+                className="info"
                 sx={{
                   align: "center",
                   "&:hover": {
@@ -36,8 +60,8 @@ const MovieCard = ({ movies }) => {
               <Typography
                 variant="body2"
                 color="text.secondary"
+                className="info"
                 sx={{
-                  display: "none",
                   "&:hover": {
                     display: "none",
                   },
