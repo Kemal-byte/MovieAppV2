@@ -5,7 +5,7 @@ import Register from "./Register";
 const Main = () => {
   return (
     <div>
-      <Login />
+      <h1>Welcome</h1>
     </div>
   );
 };

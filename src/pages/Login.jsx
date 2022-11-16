@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase";
 import Register from "./Register";
+import { AuthContextPro } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -39,11 +41,17 @@ const theme = createTheme();
 export default function SignInSide() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigate = useNavigate();
+
+  const { userIn, setUserIn } = React.useContext(AuthContextPro);
+  console.log("Is the user in? " + userIn);
 
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       console.log(user);
+      setUserIn(true);
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }
