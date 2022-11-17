@@ -21,3 +21,10 @@
   color: white;
   padding: 0.8rem;
 }
+a {
+  color: #fff;
+  text-decoration: none;
+}
+a:hover {
+  color: ivory;
+}

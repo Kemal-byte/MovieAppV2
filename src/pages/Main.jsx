@@ -11,6 +11,7 @@ const Main = () => {
     let a = localStorage.getItem("user");
     console.log(JSON.parse(a));
   }
+  console.log(userIn);
   const API_KEY = "81e74a5a3eda706f29bc7cfbd9013f25";
   const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
 

@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./MovieCard.css";
 import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
 
 const Score = styled.div`
   height: 50px;
@@ -28,6 +29,7 @@ const Score = styled.div`
 `;
 
 const MovieCard = ({ movies }) => {
+  const navigate = useNavigate();
   return (
     <>
       {movies.map((item, index) => {
@@ -86,7 +88,11 @@ const MovieCard = ({ movies }) => {
               >
                 Share
               </Button>
-              <Button size="small" variant="contained">
+              <Button
+                size="small"
+                variant="contained"
+                onClick={() => navigate("/detail", { state: item.id })}
+              >
                 Learn More
               </Button>
             </CardActions>
