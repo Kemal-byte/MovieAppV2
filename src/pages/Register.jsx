@@ -17,7 +17,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../auth/firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link as LinkA } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -179,9 +179,9 @@ export default function Register() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <LinkA to="/login" variant="body2">
                   Already have an account? Sign in
-                </Link>
+                </LinkA>
               </Grid>
             </Grid>
           </Box>

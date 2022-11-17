@@ -13,6 +13,10 @@ import {
 import Chip from "@mui/material/Chip";
 import Fragman from "../components/Fragman";
 import Caraousel from "../components/Caraousel";
+import LiveTvIcon from "@mui/icons-material/LiveTv";
+import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
+import Review from "../components/reviews/Review";
+import RateReviewOutlinedIcon from "@mui/icons-material/RateReviewOutlined";
 
 const MovieDetail = () => {
   const [details, setDetails] = useState();
@@ -174,8 +178,70 @@ const MovieDetail = () => {
                 })}
               </Box>
             </Actors>
-            <Actors>{video && <Fragman video={video} />}</Actors>
-            <Actors>{<Caraousel movieId={state} />}</Actors>
+            <Actors>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 1,
+                  justifyContent: "flex-start",
+                }}
+              >
+                <LiveTvIcon
+                  sx={{
+                    display: "flex",
+                    alignSelf: "center",
+                    marginBottom: "8px",
+                  }}
+                />
+                <h2>Videos</h2>
+              </Box>
+              <hr />
+              {video && <Fragman video={video} />}
+            </Actors>
+            <Actors>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 1,
+                  justifyContent: "flex-start",
+                }}
+              >
+                <CameraAltOutlinedIcon
+                  sx={{
+                    display: "flex",
+                    alignSelf: "center",
+                    marginBottom: "8px",
+                  }}
+                />
+                <h2>Photos</h2>
+              </Box>
+              <hr />
+
+              {<Caraousel movieId={state} />}
+            </Actors>
+            <Actors>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: 1,
+                  justifyContent: "flex-start",
+                }}
+              >
+                <RateReviewOutlinedIcon
+                  sx={{
+                    display: "flex",
+                    alignSelf: "center",
+                    marginBottom: "8px",
+                  }}
+                />
+                <h2>Reviews</h2>
+              </Box>
+              <hr />
+              <Review movieId={state} />
+            </Actors>
           </Main>
         </Box>
       </Container>

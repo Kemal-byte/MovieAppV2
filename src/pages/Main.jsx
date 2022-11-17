@@ -35,7 +35,7 @@ const Main = () => {
       <Container maxWidth="xl">
         <Box
           sx={{
-            bgcolor: "#ededed",
+            bgcolor: "#2c2b2b",
             minHeight: "100vh",
             padding: "2rem",
             display: "flex",

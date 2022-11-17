@@ -28,21 +28,13 @@ const Caraousel = ({ movieId }) => {
         class="carousel slide"
         data-ride="carousel"
       >
-        <ol class="carousel-indicators">
-          <li
-            data-target="#carouselExampleIndicators"
-            data-slide-to="0"
-            class="active"
-          ></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
               class="d-block w-100"
               src={
-                img && `https://image.tmdb.org/t/p/original/${img[0].file_path}`
+                img &&
+                `https://image.tmdb.org/t/p/original/${img[0]?.file_path}`
               }
               alt="First slide"
             />
@@ -53,7 +45,7 @@ const Caraousel = ({ movieId }) => {
                 <div class="carousel-item" key={index}>
                   <img
                     class="d-block w-100"
-                    src={`https://image.tmdb.org/t/p/original${item.file_path}`}
+                    src={`https://image.tmdb.org/t/p/original${item?.file_path}`}
                     alt="Second slide"
                   />
                 </div>

@@ -28,8 +28,16 @@ const Navbar = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "#000000",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "space-around",
+        }}
+      >
+        <Toolbar sx={{ maxWidth: "900px" }}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/">Movies</Link>
           </Typography>
