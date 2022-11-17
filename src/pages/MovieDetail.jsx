@@ -11,15 +11,20 @@ import {
   Tags,
 } from "./MovieDetails.styled";
 import Chip from "@mui/material/Chip";
+import Fragman from "../components/Fragman";
+import Caraousel from "../components/Caraousel";
 
 const MovieDetail = () => {
   const [details, setDetails] = useState();
   const [cast, setCast] = useState();
+  const [video, setVideo] = useState();
   const { state } = useLocation();
   console.log(state);
+
   const API_KEY = "81e74a5a3eda706f29bc7cfbd9013f25";
   const MovieDetailBaseUrl = `https://api.themoviedb.org/3/movie/${state}?api_key=${API_KEY}`;
   const castDetailsURL = `https://api.themoviedb.org/3/movie/${state}/credits?api_key=${API_KEY}&language=en-US`;
+  const videoUrl = `https://api.themoviedb.org/3/movie/${state}/videos?api_key=${API_KEY}`;
 
   useEffect(() => {
     async function getDetails() {
@@ -42,8 +47,20 @@ const MovieDetail = () => {
         console.log(error.message);
       }
     }
+    async function getVideo() {
+      try {
+        const resp = await fetch(videoUrl);
+        const data = await resp.json();
+        setVideo(data.results[0].key);
+        console.log(data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+
     getDetails();
     getCast();
+    getVideo();
   }, []);
 
   return (
@@ -63,15 +80,18 @@ const MovieDetail = () => {
         >
           <Main>
             <Header>
-              <h1>
-                <a href={details?.homepage}>{details?.original_title}</a>
-              </h1>
-              <div className="d-flex gap-4">
-                <div>
+              <div>
+                <h1>
+                  <a href={details?.homepage}>{details?.original_title}</a>
+                </h1>
+                <p className="font-weight-light">{details?.tagline}</p>
+              </div>
+              <div className="d-flex gap-4 font-weight-bold">
+                <div className="text-warning">
                   <h6>I.M.D.B rating</h6>
                   <h6>{details?.vote_average}</h6>
                 </div>
-                <div>
+                <div className="text-warning">
                   <h6>Relase Date</h6>
                   <h6>{details?.release_date}</h6>
                 </div>
@@ -91,18 +111,71 @@ const MovieDetail = () => {
             <Overview>{details?.overview}</Overview>
             <Actors>
               <h2>Top Cast</h2>
-              {cast &&
-                cast.slice(0, 6).map((item, index) => {
+              <hr />
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 2,
+                  flexWrap: "wrap",
+                  justifyContent: "space-around",
+                }}
+              >
+                {cast &&
+                  cast.slice(0, 6).map((item, index) => {
+                    return (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <Avatar
+                          alt="Remy Sharp"
+                          src={`https://image.tmdb.org/t/p/original${item?.profile_path}`}
+                          sx={{ width: 100, height: 100 }}
+                          key={index}
+                        />
+                        <p>{item?.name}</p>
+                      </Box>
+                    );
+                  })}
+              </Box>
+            </Actors>
+            <Actors>
+              <h2>Production Companies</h2>
+              <hr />
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 2,
+                  flexWrap: "wrap",
+                  justifyContent: "space-around",
+                }}
+              >
+                {details?.production_companies.map((item, index) => {
                   return (
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={`https://image.tmdb.org/t/p/original${item?.profile_path}`}
-                      sx={{ width: 56, height: 56 }}
-                      key={index}
-                    />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={`https://image.tmdb.org/t/p/original${item?.logo_path}`}
+                        sx={{ width: 100, height: 100 }}
+                        key={index}
+                      />
+                      <p>{item?.name}</p>
+                    </Box>
                   );
                 })}
+              </Box>
             </Actors>
+            <Actors>{video && <Fragman video={video} />}</Actors>
+            <Actors>{<Caraousel movieId={state} />}</Actors>
           </Main>
         </Box>
       </Container>

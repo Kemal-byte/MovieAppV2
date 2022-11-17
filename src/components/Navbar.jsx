@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Stack } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContextPro } from "../context/AuthContext";
 
 const Navbar = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Movies
+            <Link to="/">Movies</Link>
           </Typography>
           <Stack direction="row" spacing={2}>
             {userIn ? (
