@@ -1,0 +1,23 @@
+.MuiPaper-root:hover {
+  opacity: 0.9;
+}
+
+.MuiCardContent-root {
+  max-width: 266px;
+  display: none;
+  width: 100%;
+}
+.MuiCardMedia-root:hover + .MuiCardContent-root {
+  display: block;
+}
+.MuiCardContent-root:hover {
+  display: block;
+}
+.info {
+  bottom: 30px;
+  right: 0;
+  background-color: black;
+  width: 100%;
+  color: white;
+  padding: 0.8rem;
+}

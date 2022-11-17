@@ -5,23 +5,29 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import makeStyles from "@mui/styles";
+import "./MovieCard.css";
+import styled from "styled-components";
 
-const useStyles = makeStyles(() => ({
-  parent: {
-    "&hover": {
-      "& $info": {
-        display: "block",
-      },
-    },
-  },
-  info: {
-    display: "none",
-  },
-}));
+const Score = styled.div`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(20px, -20px);
+  background-color: #d14949;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  top: 0;
+  right: 0;
+  content: "A";
+`;
 
 const MovieCard = ({ movies }) => {
-  const classes = useStyles();
   return (
     <>
       {movies.map((item, index) => {
@@ -29,19 +35,24 @@ const MovieCard = ({ movies }) => {
           <Card
             key={index}
             sx={{
+              overflow: "visible",
+              position: "relative",
               maxWidth: 345,
               "&:hover": {
                 cursor: "pointer",
               },
             }}
           >
+            <Score>{item.vote_average}</Score>
             <CardMedia
               component="img"
               height="400"
               image={`https://image.tmdb.org/t/p/w1280${item?.poster_path}`}
               alt="green iguana"
             />
-            <CardContent>
+            <CardContent
+              sx={{ position: "absolute", left: "0px", width: "100%" }}
+            >
               <Typography
                 gutterBottom
                 align="center"
@@ -49,6 +60,7 @@ const MovieCard = ({ movies }) => {
                 component="div"
                 className="info"
                 sx={{
+                  position: "absolute",
                   align: "center",
                   "&:hover": {
                     color: "red",
@@ -61,11 +73,7 @@ const MovieCard = ({ movies }) => {
                 variant="body2"
                 color="text.secondary"
                 className="info"
-                sx={{
-                  "&:hover": {
-                    display: "none",
-                  },
-                }}
+                sx={{ position: "absolute", color: "white" }}
               >
                 {item?.overview}
               </Typography>

@@ -34,13 +34,14 @@ const Main = () => {
       <Container maxWidth="xl">
         <Box
           sx={{
-            bgcolor: "#cfe8fc",
+            bgcolor: "#ededed",
             minHeight: "100vh",
             padding: "2rem",
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
             gap: "1.5rem",
+            boxShadow: "1px 8px 25px -2px rgba(148,163,255,0.75)",
           }}
         >
           <MovieCard movies={movies} />
