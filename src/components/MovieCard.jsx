@@ -8,6 +8,9 @@ import Typography from "@mui/material/Typography";
 import "./MovieCard.css";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AuthContextPro } from "../context/AuthContext";
 
 const Score = styled.div`
   height: 50px;
@@ -30,6 +33,16 @@ const Score = styled.div`
 
 const MovieCard = ({ movies }) => {
   const navigate = useNavigate();
+
+  const { userIn, setUserIn } = React.useContext(AuthContextPro);
+  const handleNavigate = (item) => {
+    if (userIn) {
+      navigate("/detail", { state: item?.id });
+    } else {
+      toast("You need to be logged in to see details.");
+      navigate("/login");
+    }
+  };
   return (
     <>
       {movies.map((item, index) => {
@@ -109,7 +122,7 @@ const MovieCard = ({ movies }) => {
               <Button
                 size="small"
                 variant="contained"
-                onClick={() => navigate("/detail", { state: item.id })}
+                onClick={() => handleNavigate(item)}
               >
                 Learn More
               </Button>

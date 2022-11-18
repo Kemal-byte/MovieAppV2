@@ -8,10 +8,14 @@ import { Stack } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContextPro } from "../context/AuthContext";
 import { Container } from "@mui/system";
+import { signOut } from "firebase/auth";
+import { auth } from "../auth/firebase";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { userIn } = React.useContext(AuthContextPro);
+  const { userIn, setUserIn } = React.useContext(AuthContextPro);
   let visitor = localStorage.getItem("user");
   let name;
   let lastName;
@@ -21,10 +25,12 @@ const Navbar = () => {
   }
   // console.log(JSON.parse(visitor));
 
-  function logout() {
-    // logout from the firebase missing
+  async function logout() {
+    setUserIn(false);
+    await signOut(auth);
     localStorage.removeItem("user");
     navigate("/login");
+    toast("see you later alligator");
   }
 
   return (

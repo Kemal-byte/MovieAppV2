@@ -13,11 +13,13 @@ const Main = () => {
   const [movies, setMovies] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const { userIn } = React.useContext(AuthContextPro);
+
   if (userIn) {
     let a = localStorage.getItem("user");
     console.log(JSON.parse(a));
   }
-  console.log(userIn);
+  // console.log(userIn);
+
   const API_KEY = "81e74a5a3eda706f29bc7cfbd9013f25";
   const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${pageNumber}`;
 
@@ -27,7 +29,7 @@ const Main = () => {
         const resp = await fetch(FEATURED_API);
         const data = await resp.json();
         setMovies(data?.results);
-        console.log(data?.results);
+        // console.log(data?.results);
       } catch (error) {
         console.log(error.message);
       }
@@ -43,7 +45,7 @@ const Main = () => {
       );
       const data = await resp.json();
       setMovies(data.results);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log(error.message);
     }

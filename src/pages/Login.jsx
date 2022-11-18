@@ -16,6 +16,7 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../auth/firebase";
 import { AuthContextPro } from "../context/AuthContext";
 import { useNavigate, Link as LinkA } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Copyright(props) {
   return (
@@ -27,7 +28,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Kemal KARABULUT
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -49,7 +50,7 @@ export default function SignInSide() {
   const login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
+      toast("Welcome to wonderland");
       setUserIn(true);
       navigate("/");
     } catch (error) {
@@ -65,8 +66,7 @@ export default function SignInSide() {
   async function handleGoogleLogin(e) {
     try {
       e.preventDefault();
-      const google = await signInWithPopup(auth, provider);
-      console.log(google);
+      await signInWithPopup(auth, provider);
       setUserIn(true);
       navigate("/");
     } catch (error) {

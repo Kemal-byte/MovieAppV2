@@ -63,9 +63,9 @@ export default function Register() {
         registerEmail,
         registerPassword
       );
-      console.log(user);
-      console.log(userInfo);
-      localStorage.setItem("user", JSON.stringify(userInfo));
+      // console.log(user);
+      // console.log(userInfo);
+      // localStorage.setItem("user", JSON.stringify(userInfo));
     } catch (error) {
       console.log(error.message);
     }
