@@ -52,7 +52,7 @@ export default function SignInSide() {
       const user = await signInWithEmailAndPassword(auth, email, password);
       toast("Welcome to wonderland");
       setUserIn(true);
-      navigate("/");
+      navigate("/MovieAppV2");
     } catch (error) {
       console.log(error.message);
     }
@@ -68,7 +68,7 @@ export default function SignInSide() {
       e.preventDefault();
       await signInWithPopup(auth, provider);
       setUserIn(true);
-      navigate("/");
+      navigate("/MovieAppV2");
     } catch (error) {
       console.log(err.message);
     }

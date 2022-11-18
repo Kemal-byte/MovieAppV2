@@ -46,7 +46,10 @@ const Navbar = () => {
         <Container>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/" className="text-light text-decoration-none ">
+              <Link
+                to="/MovieAppV2"
+                className="text-light text-decoration-none "
+              >
                 Movies
               </Link>
             </Typography>
