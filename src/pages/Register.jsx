@@ -18,7 +18,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../auth/firebase";
 import { useNavigate, Link as LinkA } from "react-router-dom";
-
+import "./register.css";
 function Copyright(props) {
   return (
     <Typography
@@ -29,7 +29,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Kemal KARABULUT
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -179,9 +179,7 @@ export default function Register() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <LinkA to="/login" variant="body2">
-                  Already have an account? Sign in
-                </LinkA>
+                <LinkA to="/login">Already have an account? Sign in</LinkA>
               </Grid>
             </Grid>
           </Box>

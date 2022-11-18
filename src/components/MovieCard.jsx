@@ -39,7 +39,9 @@ const MovieCard = ({ movies }) => {
             sx={{
               overflow: "visible",
               position: "relative",
-              maxWidth: 345,
+              maxWidth: 266,
+              maxHeight: 500,
+              borderRadius: "5px",
               "&:hover": {
                 cursor: "pointer",
               },
@@ -49,28 +51,16 @@ const MovieCard = ({ movies }) => {
             <CardMedia
               component="img"
               height="400"
-              image={`https://image.tmdb.org/t/p/w1280${item?.poster_path}`}
+              image={
+                item?.poster_path
+                  ? `https://image.tmdb.org/t/p/w1280${item?.poster_path}`
+                  : "https://sd.keepcalms.com/i-w600/keep-calm-poster-not-found.jpg"
+              }
               alt="green iguana"
             />
             <CardContent
               sx={{ position: "absolute", left: "0px", width: "100%" }}
             >
-              <Typography
-                gutterBottom
-                align="center"
-                variant="p"
-                component="div"
-                className="info"
-                sx={{
-                  position: "absolute",
-                  align: "center",
-                  "&:hover": {
-                    color: "red",
-                  },
-                }}
-              >
-                {item?.original_title}
-              </Typography>
               <Typography
                 variant="body2"
                 color="text.secondary"
@@ -80,7 +70,35 @@ const MovieCard = ({ movies }) => {
                 {item?.overview}
               </Typography>
             </CardContent>
-            <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+            <Typography
+              gutterBottom
+              align="center"
+              variant="p"
+              component="div"
+              noWrap
+              sx={{
+                align: "center",
+                color: "#000",
+                marginBottom: "0",
+                fontSize: "1rem",
+                padding: 2,
+                lineHeight: 1,
+                fontWeight: "600",
+                backgroundColor: "#799087",
+                "&:hover": {
+                  color: "red",
+                },
+              }}
+            >
+              {item?.original_title}
+            </Typography>
+            <CardActions
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                bgcolor: "#bdbbbb",
+              }}
+            >
               <Button
                 size="small"
                 variant="contained"
